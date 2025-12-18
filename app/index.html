@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TaxScope AI - Learn what tax benefits exist. AI-powered tax education for understanding deductions, credits, and strategies. Starting at $79/month. Your CPA handles filing.">
+    <meta name="keywords" content="tax education, tax deductions, tax credits, tax strategies, tax learning, tax planning">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="TaxScope AI - Learn What Tax Benefits Exist">
+    <meta property="og:description" content="AI-powered tax education. Understand deductions, learn strategies, explore options. Starting at $79/month.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://taxscope.ai">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TaxScope AI - Learn What Tax Benefits Exist">
+    <meta name="twitter:description" content="AI-powered tax education. Understand deductions, learn strategies, explore options. Starting at $79/month.">
+    
+    <title>TaxScope AI | Learn What Tax Benefits Exist</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #050505;
+            --bg-card: #0a0a0a;
+            --bg-card-hover: #111111;
+            --accent-primary: #00ff88;
+            --accent-secondary: #0d4d2b;
+            --accent-hover: #00cc6a;
+            --accent-glow: rgba(0, 255, 136, 0.15);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #555555;
+            --border: #1a1a1a;
+            --border-light: #222222;
+            --font-display: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-display);
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+        
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-alt {
+            background: var(--bg-secondary);
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-primary);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: -0.01em;
+            margin-bottom: 20px;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        
+        .text-center { text-align: center; }
+        .text-accent { color: var(--accent-primary); }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 0 50px var(--accent-glow);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--accent-primary);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--bg-primary);
+            font-weight: 700;
+        }
+        
+        .beta-badge {
+            background: #ff9500;
+            color: #000;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-primary);
+        }
+        
+        .nav-cta {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        .mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.3;
+            mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+        
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .hero h1 {
+            margin-bottom: 24px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+        
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s ease;
+        }
+        
+        .hero-link:hover {
+            color: var(--accent-primary);
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-family: var(--font-mono);
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        
+        /* Problems Section */
+        .problems {
+            background: var(--bg-secondary);
+        }
+        
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+        
+        .problem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+        
+        .problem-card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-4px);
+        }
+        
+        .problem-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 100, 100, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .problem-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        
+        .problem-card p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* Solution Section */
+        .solution-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 60px;
+        }
+        
+        .solution-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        
+        .feature-check {
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+        
+        .solution-visual {
+            position: relative;
+        }
+        
+        .code-window {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .code-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .code-dot.red { background: #ff5f57; }
+        .code-dot.yellow { background: #febc2e; }
+        .code-dot.green { background: #28c840; }
+        
+        .code-body {
+            padding: 24px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+        
+        .code-line {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .code-num {
+            color: var(--text-muted);
+            user-select: none;
+            min-width: 24px;
+        }
+        
+        .code-text {
+            color: var(--text-secondary);
+        }
+        
+        .code-text .keyword { color: #c792ea; }
+        .code-text .string { color: var(--accent-primary); }
+        .code-text .comment { color: var(--text-muted); }
+        
+        /* Who It's For */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+        
+        .audience-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+        
+        .audience-card:hover {
+            border-color: var(--accent-secondary);
+        }
+        
+        .audience-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-secondary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .audience-card h3 {
+            margin-bottom: 12px;
+        }
+        
+        /* Examples Section */
+        .examples-container {
+            max-width: 800px;
+            margin: 60px auto 0;
+        }
+        
+        .chat-example {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+        
+        .chat-message {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .chat-message:last-child {
+            margin-bottom: 0;
+        }
+        
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .chat-avatar.user {
+            background: var(--border-light);
+            color: var(--text-primary);
+        }
+        
+        .chat-avatar.ai {
+            background: var(--accent-secondary);
+            color: var(--accent-primary);
+        }
+        
+        .chat-bubble {
+            flex: 1;
+        }
+        
+        .chat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+        
+        .chat-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+        
+        .chat-text.user-text {
+            color: var(--text-primary);
+        }
+        
+        /* AI Notice */
+        .ai-notice {
+            background: rgba(255, 149, 0, 0.1);
+            border: 1px solid rgba(255, 149, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        
+        .notice-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .notice-content {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .notice-content strong {
+            color: #ff9500;
+        }
+        
+        /* Clickwrap Notice */
+        .clickwrap-notice {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        
+        .clickwrap-notice .notice-content {
+            font-size: 0.85rem;
+        }
+        
+        /* Response Disclaimer */
+        .response-disclaimer {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        .disclaimer-icon {
+            flex-shrink: 0;
+        }
+        
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+        
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 32px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            border-color: var(--border-light);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--accent-primary);
+            background: linear-gradient(180deg, var(--accent-secondary) 0%, var(--bg-card) 100%);
+        }
+        
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .pricing-header {
+            text-align: center;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+        
+        .pricing-title {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+        
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+        }
+        
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+        
+        .pricing-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+        
+        .pricing-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+        
+        .pricing-card .btn {
+            width: 100%;
+        }
+        
+        .pricing-note {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        
+        .usage-note {
+            text-align: center;
+            margin-top: 32px;
+            padding: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+        
+        .usage-note p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        
+        /* Usage Preview */
+        .usage-preview {
+            max-width: 400px;
+            margin: 40px auto 0;
+        }
+        
+        .usage-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+        
+        .usage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .usage-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        .usage-count {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+        }
+        
+        .usage-total {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+        
+        .usage-bar {
+            height: 8px;
+            background: var(--border-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .usage-fill {
+            height: 100%;
+            background: var(--accent-primary);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .usage-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            font-size: 0.8rem;
+        }
+        
+        .usage-remaining {
+            color: var(--accent-primary);
+        }
+        
+        .usage-reset {
+            color: var(--text-muted);
+        }
+        
+        /* Comparison Section */
+        .comparison-table {
+            margin-top: 60px;
+            overflow-x: auto;
+        }
+        
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px 24px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .comparison-table th {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .comparison-table th:last-child {
+            color: var(--accent-primary);
+        }
+        
+        .comparison-table td {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        
+        .comparison-table td:last-child {
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Trust Section */
+        .trust-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .trust-intro {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .trust-intro p {
+            font-size: 1.1rem;
+            margin-top: 16px;
+        }
+        
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        
+        .trust-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .trust-item::before {
+            content: '◆';
+            color: var(--accent-primary);
+            font-size: 8px;
+        }
+        
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 60px auto 0;
+        }
+        
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            background: var(--bg-card);
+        }
+        
+        .faq-question {
+            width: 100%;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        .faq-question:hover {
+            color: var(--accent-primary);
+        }
+        
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-answer-content {
+            padding: 0 24px 24px;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+        
+        /* Distinction Grid */
+        .distinction-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin: 48px 0;
+        }
+        
+        .distinction-card {
+            padding: 32px;
+            border-radius: 12px;
+        }
+        
+        .distinction-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+        }
+        
+        .distinction-card ul {
+            list-style: none;
+        }
+        
+        .distinction-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.95rem;
+        }
+        
+        .distinction-card li:last-child {
+            border-bottom: none;
+        }
+        
+        .is-card {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+        
+        .is-card h3 {
+            color: var(--accent-primary);
+        }
+        
+        .isnot-card {
+            background: rgba(255, 59, 48, 0.05);
+            border: 1px solid rgba(255, 59, 48, 0.3);
+        }
+        
+        .isnot-card h3 {
+            color: #ff3b30;
+        }
+        
+        .distinction-cta {
+            text-align: center;
+            padding: 32px;
+            background: rgba(255, 149, 0, 0.1);
+            border: 1px solid rgba(255, 149, 0, 0.3);
+            border-radius: 12px;
+        }
+        
+        .distinction-cta p {
+            color: #ff9500;
+            margin-bottom: 24px;
+        }
+        
+        .resource-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        
+        .resource-link:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            position: relative;
+        }
+        
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .final-cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .final-cta h2 {
+            margin-bottom: 16px;
+        }
+        
+        .final-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+        
+        .final-cta .btn {
+            padding: 20px 48px;
+            font-size: 1.1rem;
+        }
+        
+        .final-cta-note {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border);
+            padding: 60px 0 40px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+        
+        .footer-brand {
+            max-width: 300px;
+        }
+        
+        .footer-brand .logo {
+            margin-bottom: 16px;
+        }
+        
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 48px;
+        }
+        
+        .footer-col h4 {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .footer-col a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 0;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-col a:hover {
+            color: var(--accent-primary);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .footer-social a:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+        
+        .footer-disclaimer {
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 24px;
+        }
+        
+        .footer-disclaimer p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 900px;
+        }
+        
+        /* Beta Notice */
+        .beta-notice {
+            background: rgba(255, 149, 0, 0.1);
+            border: 1px solid rgba(255, 149, 0, 0.3);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-top: 40px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        
+        .beta-notice-icon {
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .beta-notice-content {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .beta-notice-content strong {
+            color: #ff9500;
+        }
+        
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .solution-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            
+            .solution-visual {
+                order: -1;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+            
+            .nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 80px 24px 24px;
+                gap: 24px;
+                transition: right 0.3s ease;
+                border-left: 1px solid var(--border);
+            }
+            
+            .nav.active {
+                right: 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .problems-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+            
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .distinction-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resource-links {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 32px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+            
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">TS</div>
+                    TaxScope AI
+                    <span class="beta-badge">BETA</span>
+                </a>
+                
+                <nav class="nav" id="nav">
+                    <a href="#pricing" class="nav-link">Pricing</a>
+                    <a href="#faq" class="nav-link">FAQ</a>
+                    <a href="#how-it-works" class="nav-link">How It Works</a>
+                    <a href="#" class="btn btn-primary nav-cta">Start Free Trial</a>
+                </nav>
+                
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-grid"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    Educational Tool — Consult a CPA for Filing
+                </div>
+                
+                <h1>Learn What Tax Benefits Exist.<br><span class="text-accent">Before You Meet Your CPA.</span></h1>
+                
+                <p class="hero-subtitle">AI-powered tax education that helps you understand deductions, learn about strategies, and explore your options. Get informed first — your CPA handles the filing.</p>
+                
+                <div class="hero-cta">
+                    <a href="#" class="btn btn-primary">Start Free Trial</a>
+                    <a href="#how-it-works" class="hero-link">See How It Works ↓</a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-value">$79</div>
+                        <div class="stat-label">Starting Price/Mo</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">100</div>
+                        <div class="stat-label">Questions Included</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">24/7</div>
+                        <div class="stat-label">Availability</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Section -->
+    <section class="section problems">
+        <div class="container">
+            <div class="text-center">
+                <h2>Tax Information When You Need It</h2>
+                <p>Get answers about tax concepts instantly — then work with your CPA on the paperwork.</p>
+            </div>
+            
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">💬</div>
+                    <h3>Ask About Tax Topics</h3>
+                    <p>Wondering about deductions, credits, or tax strategies? Get educational information to help you understand your options.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">💡</div>
+                    <h3>Understand Before You Decide</h3>
+                    <p>Learn about S-Corps, retirement accounts, real estate deductions, and more — so you can have informed discussions with your CPA.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">📋</div>
+                    <h3>Your CPA Handles the Paperwork</h3>
+                    <p>TaxScope AI helps you understand tax concepts. Your licensed CPA or tax attorney handles filing, representation, and official advice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- What This Is Section -->
+    <section class="section" id="how-it-works">
+        <div class="container">
+            <div class="text-center">
+                <h2>Tax Education On Demand</h2>
+            </div>
+            
+            <div class="solution-content">
+                <div class="solution-text">
+                    <p>TaxScope AI helps you understand tax concepts, explore deduction opportunities, and learn about tax strategies. Use it to get informed before meeting with your CPA or tax attorney who will handle your actual filing and provide personalized advice.</p>
+                    
+                    <ul class="feature-list">
+                        <li><span class="feature-check">✓</span> Learn about federal and state tax concepts</li>
+                        <li><span class="feature-check">✓</span> Explore deductions and credits</li>
+                        <li><span class="feature-check">✓</span> Understand business entity options</li>
+                        <li><span class="feature-check">✓</span> Research retirement account strategies</li>
+                        <li><span class="feature-check">✓</span> Get informed about real estate tax topics</li>
+                        <li><span class="feature-check">✓</span> Learn self-employment tax basics</li>
+                    </ul>
+                    
+                    <p style="margin-top: 20px; color: var(--text-muted);"><strong>What TaxScope AI doesn't do:</strong> File tax returns, prepare documents, or represent you before the IRS. That's what licensed CPAs and tax attorneys are for.</p>
+                </div>
+                
+                <div class="solution-visual">
+                    <div class="code-window">
+                        <div class="code-header">
+                            <span class="code-dot red"></span>
+                            <span class="code-dot yellow"></span>
+                            <span class="code-dot green"></span>
+                        </div>
+                        <div class="code-body">
+                            <div class="code-line"><span class="code-num">1</span><span class="code-text"><span class="comment">// How It Works</span></span></div>
+                            <div class="code-line"><span class="code-num">2</span><span class="code-text"><span class="keyword">const</span> workflow = {</span></div>
+                            <div class="code-line"><span class="code-num">3</span><span class="code-text">  step1: <span class="string">"Learn with TaxEd"</span>,</span></div>
+                            <div class="code-line"><span class="code-num">4</span><span class="code-text">  step2: <span class="string">"Consult your CPA"</span>,</span></div>
+                            <div class="code-line"><span class="code-num">5</span><span class="code-text">  step3: <span class="string">"CPA files for you"</span></span></div>
+                            <div class="code-line"><span class="code-num">6</span><span class="code-text">};</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Who It's For -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="text-center">
+                <h2>Built For People Who Want Tax Clarity</h2>
+            </div>
+            
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="audience-icon">💻</div>
+                    <h3>Freelancers &amp; Self-Employed</h3>
+                    <p>Learn about quarterly estimates, home office deductions, vehicle expenses, and retirement options. Understand your situation before meeting your CPA.</p>
+                </div>
+                
+                <div class="audience-card">
+                    <div class="audience-icon">🏠</div>
+                    <h3>Real Estate Investors</h3>
+                    <p>Explore concepts like depreciation, 1031 exchanges, cost segregation, and passive loss rules. Get educated on the strategies available to you.</p>
+                </div>
+                
+                <div class="audience-card">
+                    <div class="audience-icon">🏢</div>
+                    <h3>Small Business Owners</h3>
+                    <p>Research LLC vs S-Corp, QBI deduction, reasonable compensation, and business expense categories. Know your options.</p>
+                </div>
+                
+                <div class="audience-card">
+                    <div class="audience-icon">📈</div>
+                    <h3>Investors &amp; High Earners</h3>
+                    <p>Understand tax-loss harvesting, backdoor Roth strategies, NIIT, and charitable giving options. Make informed decisions with your advisor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Examples Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center">
+                <h2>See How It Works</h2>
+                <p style="color: var(--text-muted); margin-top: 8px;">Get tax information instantly — your CPA handles the filing</p>
+            </div>
+            
+            <div class="examples-container">
+                <!-- AI Notice -->
+                <div class="ai-notice">
+                    <div class="notice-icon">💡</div>
+                    <div class="notice-content">
+                        <strong>How to use this tool:</strong> Ask about tax concepts, deductions, strategies, and rules. We'll help you understand. Then work with your CPA or tax attorney for filing, document preparation, and personalized advice.
+                    </div>
+                </div>
+                
+                <div class="chat-example">
+                    <div class="chat-message">
+                        <div class="chat-avatar user">User</div>
+                        <div class="chat-bubble">
+                            <div class="chat-label">Question</div>
+                            <div class="chat-text user-text">I'm a freelance designer making about $95K. What deductions should I know about?</div>
+                        </div>
+                    </div>
+                    <div class="chat-message">
+                        <div class="chat-avatar ai">AI</div>
+                        <div class="chat-bubble">
+                            <div class="chat-label">TaxScope AI</div>
+                            <div class="chat-text">As a self-employed freelancer, there are several deduction categories worth exploring with your CPA:<br><br>• <strong>Home Office</strong> — If you use part of your home exclusively for business, you may qualify. The simplified method is $5/sq ft up to 300 sq ft.<br><br>• <strong>Health Insurance</strong> — Self-employed individuals can often deduct health insurance premiums above-the-line.<br><br>• <strong>Retirement Contributions</strong> — SEP-IRA allows up to 25% of net self-employment income. Solo 401(k) may allow even more.<br><br>• <strong>Business Expenses</strong> — Software, equipment, professional development, and supplies are typically deductible.<br><br>• <strong>Self-Employment Tax</strong> — You can deduct half of your SE tax.<br><br>Discuss these with your CPA to determine what applies to your specific situation and to properly document everything.</div>
+                            <div class="response-disclaimer">
+                                <span class="disclaimer-icon">📋</span> This is educational information. Tax rules have specific requirements and limitations. Your CPA can determine what applies to your situation and handle your filing.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-example">
+                    <div class="chat-message">
+                        <div class="chat-avatar user">User</div>
+                        <div class="chat-bubble">
+                            <div class="chat-label">Question</div>
+                            <div class="chat-text user-text">Should I convert my LLC to an S-Corp?</div>
+                        </div>
+                    </div>
+                    <div class="chat-message">
+                        <div class="chat-avatar ai">AI</div>
+                        <div class="chat-bubble">
+                            <div class="chat-label">TaxScope AI</div>
+                            <div class="chat-text">The S-Corp election can save self-employment taxes, but it's not right for everyone. Here's what to consider:<br><br><strong>Potential Benefits:</strong><br>• You can split income between salary (subject to SE tax) and distributions (not subject to SE tax)<br>• At higher income levels, this can mean significant savings<br><br><strong>Common Guideline:</strong><br>Many CPAs suggest considering S-Corp when net profit exceeds ~$60-80K, as the savings start to outweigh the costs.<br><br><strong>Added Requirements:</strong><br>• Must run payroll and pay yourself "reasonable compensation"<br>• Additional tax filings (Form 1120-S)<br>• Stricter record-keeping<br><br>This is a significant decision with long-term implications. Your CPA can run the numbers for your specific situation and handle the election paperwork if it makes sense.</div>
+                            <div class="response-disclaimer">
+                                <span class="disclaimer-icon">📋</span> Entity selection has legal and tax implications. Have your CPA or tax attorney evaluate your specific circumstances before making this decision.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="section section-alt" id="pricing">
+        <div class="container">
+            <div class="text-center">
+                <h2>Simple Pricing</h2>
+                <p style="color: var(--text-muted); margin-top: 12px;">Tax education and information — your CPA handles filing and representation</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Individual</h3>
+                        <div class="pricing-price">$79<span>/month</span></div>
+                        <p class="pricing-subtitle">For personal tax learning</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><strong>100 questions/month</strong></li>
+                        <li>Federal &amp; state tax topics</li>
+                        <li>Deduction exploration</li>
+                        <li>Retirement planning info</li>
+                        <li>Email support</li>
+                        <li>$0.50 per additional question</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Start Free Trial</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Plus</h3>
+                        <div class="pricing-price">$149<span>/month</span></div>
+                        <p class="pricing-subtitle">For deeper research</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><strong>200 questions/month</strong></li>
+                        <li>Everything in Individual</li>
+                        <li>Faster responses</li>
+                        <li>More detailed explanations</li>
+                        <li>Multi-state topics</li>
+                        <li>Business entity info</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Start Free Trial</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Team</h3>
+                        <div class="pricing-price">$299<span>/month</span></div>
+                        <p class="pricing-subtitle">For teams</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><strong>400 questions/month</strong></li>
+                        <li>Everything in Plus</li>
+                        <li>3 team seats</li>
+                        <li>API access</li>
+                        <li>International tax topics</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Start Free Trial</a>
+                </div>
+            </div>
+            
+            <div class="usage-note">
+                <p><strong>What's included:</strong> Unlimited access to tax education and information. <strong>What's not:</strong> Tax return filing, document preparation, or IRS representation — that's what your CPA does.</p>
+            </div>
+            
+            <p class="pricing-note">7-day free trial. Cancel anytime. Annual billing saves 17%.</p>
+        </div>
+    </section>
+    
+    <!-- Usage Indicator Preview -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center">
+                <h2>Track Your Usage</h2>
+                <p style="color: var(--text-muted); margin-top: 12px;">Always know where you stand</p>
+            </div>
+            
+            <div class="usage-preview">
+                <div class="usage-card">
+                    <div class="usage-header">
+                        <span class="usage-label">Questions This Month</span>
+                        <span class="usage-count">53 <span class="usage-total">/ 100</span></span>
+                    </div>
+                    <div class="usage-bar">
+                        <div class="usage-fill" style="width: 53%;"></div>
+                    </div>
+                    <div class="usage-footer">
+                        <span class="usage-remaining">47 questions remaining</span>
+                        <span class="usage-reset">Resets Jan 15</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- What TaxScope Does Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center">
+                <h2>What TaxScope AI Does &amp; Doesn't Do</h2>
+                <p style="color: var(--text-muted); margin-top: 12px;">TaxScope AI = education. Your CPA = execution.</p>
+            </div>
+            
+            <div class="distinction-grid">
+                <div class="distinction-card is-card">
+                    <h3>✓ What TaxScope AI Does</h3>
+                    <ul>
+                        <li><strong>Explains tax concepts</strong> and how they work</li>
+                        <li><strong>Answers questions</strong> about deductions, credits, and strategies</li>
+                        <li><strong>Helps you understand</strong> your options</li>
+                        <li><strong>Prepares you</strong> for productive CPA meetings</li>
+                        <li><strong>Available 24/7</strong> for instant information</li>
+                    </ul>
+                </div>
+                
+                <div class="distinction-card isnot-card">
+                    <h3>✗ What TaxScope AI Doesn't Do</h3>
+                    <ul>
+                        <li><strong>File tax returns</strong> — your CPA does this</li>
+                        <li><strong>Prepare documents</strong> — your CPA does this</li>
+                        <li><strong>Represent you before the IRS</strong> — licensed professionals only</li>
+                        <li><strong>Guarantee accuracy</strong> — always verify with your CPA</li>
+                        <li><strong>Replace your CPA</strong> — works alongside them</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="distinction-cta">
+                <p><strong>Need a tax professional?</strong> Find one here:</p>
+                <div class="resource-links">
+                    <a href="https://www.aicpa-cima.com/resources/find-a-cpa" target="_blank" rel="noopener" class="resource-link">
+                        <span>👤</span> Find a CPA
+                    </a>
+                    <a href="https://www.naea.org/tax-help/find-a-tax-professional" target="_blank" rel="noopener" class="resource-link">
+                        <span>📋</span> Find an Enrolled Agent
+                    </a>
+                    <a href="https://www.irs.gov" target="_blank" rel="noopener" class="resource-link">
+                        <span>📄</span> IRS.gov
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works Together Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="trust-content">
+                <div class="trust-intro text-center">
+                    <h2>TaxScope AI + Your CPA = Best Results</h2>
+                    <p>TaxScope AI helps you understand. Your CPA helps you execute.</p>
+                </div>
+                
+                <div class="trust-grid">
+                    <div class="trust-item">Learn about deductions</div>
+                    <div class="trust-item">Understand tax strategies</div>
+                    <div class="trust-item">Explore your options</div>
+                    <div class="trust-item">Prepare smart questions</div>
+                    <div class="trust-item">Get informed 24/7</div>
+                    <div class="trust-item">Save time with your CPA</div>
+                </div>
+                
+                <div class="trust-warning" style="background: rgba(255, 149, 0, 0.1); border: 1px solid rgba(255, 149, 0, 0.3); border-radius: 12px; padding: 24px; margin-top: 32px; text-align: center;">
+                    <p style="color: #ff9500; font-size: 0.95rem; margin-bottom: 12px;"><strong>Important Note</strong></p>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">
+                        AI can make mistakes. Tax law is complex and changes frequently. Always verify important information with 
+                        <a href="https://www.irs.gov" target="_blank" rel="noopener" style="color: var(--accent-primary);">IRS.gov</a> 
+                        and discuss your specific situation with a 
+                        <a href="https://www.aicpa-cima.com/resources/find-a-cpa" target="_blank" rel="noopener" style="color: var(--accent-primary);">licensed CPA</a> 
+                        or tax attorney before making decisions or filing.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="section" id="faq">
+        <div class="container">
+            <div class="text-center">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What can TaxScope AI help me with?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            TaxScope AI helps you understand tax concepts, explore deductions, learn about tax strategies, and get informed about your options. Ask about anything from home office deductions to S-Corp elections to retirement accounts. Get educated so you can have more productive conversations with your CPA.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can you file my taxes?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            No — and that's by design. TaxScope AI focuses on education and information. Your CPA or tax professional handles filing, document preparation, and IRS representation. TaxScope AI helps you understand your situation; your CPA helps you execute on it.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do I still need a CPA?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes. TaxScope AI complements your CPA, not replaces them. TaxScope AI helps you understand concepts and options. Your CPA provides personalized advice, prepares your returns, ensures compliance, and represents you if needed. Think of it as the research tool that helps you get more value from your professional relationships.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How accurate is the information?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            TaxScope AI strives to provide accurate, helpful tax information. However, AI can make mistakes and tax law changes frequently. Always verify important information with IRS.gov and discuss your specific situation with a licensed professional before making decisions. It's a learning tool, not the final word.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can I cancel anytime?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes. No contracts, no cancellation fees. Cancel anytime from your account dashboard.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section class="section final-cta">
+        <div class="container">
+            <div class="final-cta-content">
+                <h2>Learn What Tax Benefits Exist</h2>
+                <p>Understand deductions. Learn strategies. Explore your options.</p>
+                <a href="#" class="btn btn-primary">Start Your Free Trial</a>
+                <p class="final-cta-note">7-day free trial. Cancel anytime. Your CPA handles filing.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">TS</div>
+                        TaxScope AI
+                        <span class="beta-badge">BETA</span>
+                    </a>
+                    <p>Tax education and information. Your CPA handles filing.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Product</h4>
+                        <a href="#pricing">Pricing</a>
+                        <a href="#faq">FAQ</a>
+                        <a href="mailto:hello@taxscope.ai">Contact</a>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Legal</h4>
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms of Service</a>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Find a Tax Professional</h4>
+                        <a href="https://www.irs.gov" target="_blank" rel="noopener">IRS.gov</a>
+                        <a href="https://www.aicpa-cima.com/resources/find-a-cpa" target="_blank" rel="noopener">Find a CPA</a>
+                        <a href="https://www.naea.org/tax-help/find-a-tax-professional" target="_blank" rel="noopener">Find an Enrolled Agent</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-disclaimer" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 24px; margin-top: 24px;">
+                <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.7;">
+                    <strong>About TaxScope AI:</strong> TaxScope AI provides tax education and information to help you understand tax concepts and strategies. TaxScope AI does not file tax returns, prepare tax documents, or represent anyone before the IRS — those services require licensed CPAs, Enrolled Agents, or tax attorneys. AI can make mistakes, so verify important details with IRS.gov and your tax professional. By using this site, you agree to the <a href="terms.html" style="color: var(--accent-primary);">Terms of Service</a>.
+                </p>
+            </div>
+            
+            <div class="footer-bottom">
+                <span>© 2025 TaxScope AI. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const nav = document.getElementById('nav');
+        
+        mobileToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+        
+        // FAQ accordion
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-answer').style.maxHeight = '0';
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+        
+        // Header scroll effect
+        let lastScroll = 0;
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.8)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
