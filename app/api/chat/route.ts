@@ -1,7 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+import { createClient } from '@supabase/supabase-js';
 
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
+const MONTHLY_LIMIT = 100;
+
+function getCurrentMonthYear() {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+}
 const TAX_SYSTEM_PROMPT = `You are TaxScope AI, an expert tax education assistant specializing in US federal and Michigan state tax law. You provide detailed, accurate tax education with specific numbers, calculations, and step-by-step breakdowns.
 
 ## CORE RULES
@@ -272,7 +284,27 @@ When answering questions:
 
 export async function POST(request: NextRequest) {
   try {
-    const { message, history } = await request.json();
+    const { message, history, userId } = await request.json();
+
+    // Check usage limit
+    if (userId) {
+      const monthYear = getCurrentMonthYear();
+      
+      // Get or create usage record
+      const { data: usage } = await supabase
+        .from('usage')
+        .select('questions_used')
+        .eq('user_id', userId)
+        .eq('month_year', monthYear)
+        .single();
+
+      if (usage && usage.questions_used >= MONTHLY_LIMIT) {
+        return NextResponse.json({ 
+          error: 'Monthly limit reached. Upgrade your plan for more questions.',
+          limitReached: true 
+        }, { status: 429 });
+      }
+    }
 
     if (!message) {
       return NextResponse.json({ error: 'Message is required' }, { status: 400 });
@@ -322,6 +354,31 @@ export async function POST(request: NextRequest) {
 
     const data = await response.json();
     const aiMessage = data.content[0]?.text || 'Sorry, I could not generate a response.';
+
+ // Update usage count
+    if (userId) {
+      const monthYear = getCurrentMonthYear();
+      await supabase
+        .from('usage')
+        .upsert({
+          user_id: userId,
+          month_year: monthYear,
+          questions_used: 1,
+          updated_at: new Date().toISOString()
+        }, {
+          onConflict: 'user_id,month_year'
+        })
+        .select();
+      
+      await supabase
+        .from('usage')
+        .update({ 
+          questions_used: supabase.rpc('increment_usage', { row_id: userId }),
+          updated_at: new Date().toISOString()
+        })
+        .eq('user_id', userId)
+        .eq('month_year', monthYear);
+    }
 
     return NextResponse.json({ response: aiMessage });
   } catch (error) {
