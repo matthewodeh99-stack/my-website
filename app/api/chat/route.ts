@@ -355,29 +355,13 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
     const aiMessage = data.content[0]?.text || 'Sorry, I could not generate a response.';
 
- // Update usage count
+// Update usage count
     if (userId) {
       const monthYear = getCurrentMonthYear();
-      await supabase
-        .from('usage')
-        .upsert({
-          user_id: userId,
-          month_year: monthYear,
-          questions_used: 1,
-          updated_at: new Date().toISOString()
-        }, {
-          onConflict: 'user_id,month_year'
-        })
-        .select();
-      
-      await supabase
-        .from('usage')
-        .update({ 
-          questions_used: supabase.rpc('increment_usage', { row_id: userId }),
-          updated_at: new Date().toISOString()
-        })
-        .eq('user_id', userId)
-        .eq('month_year', monthYear);
+      await supabase.rpc('increment_usage', { 
+        row_user_id: userId, 
+        row_month_year: monthYear 
+      });
     }
 
     return NextResponse.json({ response: aiMessage });
