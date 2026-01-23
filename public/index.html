@@ -1998,6 +1998,12 @@
             });
         });
         
+        // Open all FAQs by default
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.add('active');
+            item.querySelector('.faq-answer').style.maxHeight = item.querySelector('.faq-answer').scrollHeight + 'px';
+        });
+
         // FAQ accordion
         document.querySelectorAll('.faq-item').forEach(item => {
             const question = item.querySelector('.faq-question');
